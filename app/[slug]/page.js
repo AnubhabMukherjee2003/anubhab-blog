@@ -2,66 +2,109 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { notFound } from 'next/navigation';
+import ThemeToggle from "../theme-toggle";
+import '../page.css';
+import './page.css';
 
 export default async function Page({ params }) {
   try {
     const { slug } = await params
-    console.log('Trying to load:', slug)
-    
     // Dynamic import with better error handling
-    const { default: Post, metadata } = await import(`@/markdown/${slug}.mdx`)
+    const mdxModule = await import(`../../markdown/${slug}.mdx`);
+    const { default: Post, metadata } = mdxModule;
+    
+    // Format the date in ddmmyy format for consistency
+    const formatDate = (dateString) => {
+  try {
+    if (dateString === "Unknown") return "??????";
+    
+    // Create date object - works for ISO format "YYYY-MM-DD"
+    const date = new Date(dateString);
+    
+    // Check if date is valid
+    if (!isNaN(date.getTime())) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = String(date.getFullYear()).slice(-2);
+      return `${day}${month}${year}`;
+    }
+    
+    // If we get here, the date was invalid
+    console.warn(`Could not parse date: ${dateString}`);
+    return "??????";  // Fallback for unparseable dates
+  } catch (error) {
+    console.error(`Error formatting date: ${dateString}`, error);
+    return "??????";  // Fallback for any errors
+  }
+};
     
     return (
-      <div className="container mx-auto px-4 py-8">
-        <nav className="mb-8">
+      <>
+        <ThemeToggle />
+        <header className="header-main">
           <Link 
             href="/" 
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="back-link"
           >
-            ← Back to Blog
+            ← Back to Thoughts
           </Link>
-        </nav>
+        </header>
         
-        <article className="prose prose-lg max-w-none">
-          {metadata && (
-            <header className="mb-8 pb-6 border-b border-gray-200">
-              <h1 className="text-4xl font-bold mb-4">{metadata.title}</h1>
-              <div className="flex items-center gap-4 text-gray-600">
-                <span>{metadata.publishDate}</span>
+        <main className="main-content">
+          <section className="content">
+            <article className="post-content">
+              {metadata && (
+                <header className="post-header">
+                  <div className="dateline">{formatDate(metadata.publishDate)}</div>
+                  <h1 className="post-title">{metadata.title}</h1>
+                  <p className="post-description">{metadata.description}</p>
+                </header>
+              )}
+              <div className="post-body">
+                <Post />
               </div>
-              <p className="text-xl text-gray-700 mt-4">{metadata.description}</p>
-            </header>
-          )}
-          <Post />
-        </article>
-      </div>
+            </article>
+          </section>
+        </main>
+        <footer className="footer-main">
+          <p>© 2025 Your Blog. All rights reserved.</p>
+        </footer>
+      </>
     )
   } catch (error) {
     console.error('Error loading MDX file:', error)
     return (
-      <div className="container mx-auto px-4 py-8">
-        <nav className="mb-8">
+      <>
+        <ThemeToggle />
+        <header className="header-main">
           <Link 
             href="/" 
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="back-link"
           >
-            ← Back to Blog
+            ← Back to Thoughts
           </Link>
-        </nav>
+        </header>
         
-        <div className="p-8">
-          <h1 className="text-2xl font-bold text-red-600">Error Loading Post</h1>
-          <p className="mt-4 text-gray-600">
-            Could not load the requested post: {error.message}
-          </p>
-          <details className="mt-4">
-            <summary className="cursor-pointer font-medium">Error Details</summary>
-            <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
-              {error.stack}
-            </pre>
-          </details>
-        </div>
-      </div>
+        <main className="main-content">
+          <section className="content">
+            <div className="error-container">
+              <h1 className="error-title">Error Loading Post</h1>
+              <p className="error-message">
+                Could not load the requested post: {error.message}
+              </p>
+              <details className="error-details">
+                <summary>Error Details</summary>
+                <pre className="error-stack">
+                  {error.stack}
+                </pre>
+              </details>
+            </div>
+          </section>
+        </main>
+        <footer className="footer-main">
+          <p>© 2025 Your Blog. All rights reserved.</p>
+        </footer>
+      </>
     )
   }
 }
@@ -79,7 +122,9 @@ export async function generateStaticParams() {
 // Generate metadata for the page
 export async function generateMetadata({ params }) {
   try {
-    const { metadata } = await import(`@/markdown/${params.slug}.mdx`);
+    const { slug } = await params;
+    const mdxModule = await import(`../../markdown/${slug}.mdx`);
+    const { metadata } = mdxModule;
     return {
       title: metadata.title,
       description: metadata.description,
