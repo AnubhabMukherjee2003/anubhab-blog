@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.anubhab-blog.live
+
+# Sitemaps
+Sitemap: https://www.anubhab-blog.live/sitemap.xml
