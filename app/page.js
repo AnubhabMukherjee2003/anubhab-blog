@@ -59,7 +59,7 @@ export default async function Page() {
   const blogPosts = await getBlogPosts();
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white font-sans">
+    <div className="w-full min-h-screen p-[clamp(0.5rem,3vw,2rem)] ">
       <Header />
       <main className="border border-[#444] border-t-0 rounded-b-lg p-4">
         <section className="max-w-3xl mx-auto px-2 sm:px-6">

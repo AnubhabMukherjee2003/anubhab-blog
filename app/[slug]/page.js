@@ -11,8 +11,8 @@ export default async function Page({ params }) {
     const { default: Post, metadata } = mdxModule;
     
     return (
-      <div className="w-full min-h-screen p-[clamp(0.5rem,3vw,2rem)] font-['Inter',system-ui,'Segoe_UI',Roboto,sans-serif] text-base font-light leading-relaxed text-white bg-gray-900">
-        <header className="border border-gray-600 rounded-t-lg p-8 text-center bg-gray-900">
+      <div className="w-full min-h-screen p-[clamp(0.5rem,3vw,2rem)] ">
+        <header className="border border-white rounded-t-lg p-8 text-center">
           <Link 
             href="/" 
             className="inline-flex items-center mb-4 text-gray-400 font-medium transition-colors duration-200 hover:text-white no-underline focus:outline-2 focus:outline-gray-400 focus:outline-offset-2"
