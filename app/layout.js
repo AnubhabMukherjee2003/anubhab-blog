@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
+import "./page.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
+// import { Inter } from "next/font/google";
+// const inter = Inter({
+//   subsets: ["latin"],
+//   display: "swap",
+//   variable: "--font-inter",
+// });
 
 export const metadata = {
   title: "Thoughts | Your Blog",
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${inter.variable} thoughts`}>
+      <body>
         {children}
       </body>
     </html>

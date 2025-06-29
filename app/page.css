@@ -1,46 +1,5 @@
-/*--------------------------------------------------------------------
-* Personal Blog - Thoughts Section
-* Converted from mine project (Pug/Stylus) to pure HTML/CSS
---------------------------------------------------------------------*/
-
-/* CSS Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol, ul {
-    list-style: none;
-}
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* CSS Variables */
 :root {
@@ -86,13 +45,7 @@ html[data-user-color-scheme="dark"] {
     --accent-color: #999;
 }
 
-/* Base Styles */
-::selection {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    fill: var(--bg-color);
-}
-
+/* Base styles */
 html {
     height: 100%;
     color-scheme: light dark;
@@ -110,68 +63,10 @@ body {
     background-color: var(--bg-color);
 }
 
-.visually-hidden {
-    height: 1px;
-    width: 1px;
-    position: absolute;
-    display: block;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(1px);
-    white-space: nowrap;
-}
-
-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-h1 { font-size: var(--font-4xl); }
-h2 { font-size: var(--font-3xl); }
-h3 { font-size: var(--font-2xl); }
-h4 { font-size: var(--font-xl); }
-h5 { font-size: var(--font-lg); }
-h6 { font-size: var(--font-base); }
-
-p {
-    margin-bottom: 1rem;
-}
-
-strong {
-    font-weight: 600;
-}
-
-em {
-    font-style: italic;
-}
-
-small {
-    font-size: var(--font-sm);
-}
-
-/* Links */
-a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--accent-color);
-}
-
-a:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
+::selection {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    fill: var(--bg-color);
 }
 
 /* Header Styles */
@@ -221,6 +116,51 @@ a:focus {
     }
 }
 
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: var(--font-4xl); }
+h2 { font-size: var(--font-3xl); }
+h3 { font-size: var(--font-2xl); }
+h4 { font-size: var(--font-xl); }
+h5 { font-size: var(--font-lg); }
+h6 { font-size: var(--font-base); }
+
+p {
+    margin-bottom: 1rem;
+}
+
+strong {
+    font-weight: 600;
+}
+
+em {
+    font-style: italic;
+}
+
+small {
+    font-size: var(--font-sm);
+}
+
+/* Links */
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
 /* Main Content */
 .main-content {
     border: var(--border-width) solid var(--border-color);
@@ -236,63 +176,16 @@ a:focus {
     padding: 0 var(--content-padding);
 }
 
-/* Thoughts List Styles */
-.thoughts-list {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.thought-item {
-    display: contents;
-}
-
-@media screen and (min-width: 751px) {
-    .thoughts-list {
-        grid-template-columns: minmax(auto, 10vw) 1fr;
-        gap: var(--content-padding);
-    }
-}
-
-.dateline {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 0.5em;
-    align-items: center;
-    font-family: 'Courier New', monospace;
+/* Footer */
+.footer-main {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    text-align: center;
     font-size: var(--font-sm);
-    font-weight: 600;
-    color: var(--accent-color);
-    grid-column: 1;
-    letter-spacing: 0.05em;
-}
-
-.thought {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    grid-column: 2;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-
-.thought:hover {
-    border-bottom-color: var(--border-color);
-    transform: translateX(4px);
-}
-
-.thought-title {
-    font-weight: 500;
-    line-height: 1.3;
-    font-size: var(--font-lg);
-    display: block;
-    transition: color 0.2s ease;
-}
-
-.thought-title:hover {
     color: var(--accent-color);
 }
 
+/* Custom thought title animation */
 .thought-title span {
     position: relative;
 }
@@ -312,29 +205,121 @@ a:focus {
     width: 100%;
 }
 
+/* Thoughts List Styles */
+.thoughts-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media screen and (min-width: 751px) {
+    .thoughts-list {
+        grid-template-columns: minmax(auto, 10vw) 1fr;
+        gap: var(--content-padding);
+    }
+    
+    .dateline::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        display: block;
+        background-color: var(--border-color);
+        margin-left: 1rem;
+    }
+}
+
+.dateline {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--accent-color);
+    grid-column: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.thought {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    grid-column: 2;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thought:hover {
+    border-bottom-color: var(--border-color);
+    transform: translateX(4px);
+}
+
+.thought-title {
+    font-weight: 500;
+    line-height: 1.3;
+    font-size: var(--font-lg);
+    display: block;
+    transition: color 0.2s ease;
+    flex: 1;
+}
+
+.thought-title:hover {
+    color: var(--accent-color);
+}
+
+.thought-date {
+    font-size: var(--font-xs);
+    color: var(--accent-color);
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
 @media screen and (max-width: 750px) {
     .thoughts-list {
         gap: 0.75rem;
     }
     
     .dateline {
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.75rem;
         font-size: var(--font-xs);
         grid-column: 1 / -1;
     }
     
+    .dateline::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        display: block;
+        background-color: var(--border-color);
+        margin-left: 1rem;
+    }
+    
     .thought {
         grid-column: 1 / -1;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.25rem;
         padding: 0.5rem 0;
-        margin-top: -0.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
     }
     
     .thought-title {
         font-size: var(--font-base);
     }
+    
+    .thought-date {
+        margin-left: 0;
+        font-size: var(--font-xs);
+    }
 }
 
+/* External link icon */
 .external:not(:empty) {
     margin-left: 1em;
 }
@@ -343,54 +328,4 @@ a:focus {
     content: '↗';
     margin-left: 0.3em;
     display: inline-block;
-}
-
-/* Footer */
-.footer-main {
-    margin-top: 2rem;
-    padding: 1rem 0;
-    text-align: center;
-    font-size: var(--font-sm);
-    color: var(--accent-color);
-}
-
-/* Font loading for better performance */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2') format('woff2');
 }
