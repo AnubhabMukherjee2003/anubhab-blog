@@ -21,7 +21,7 @@ export default async function Page({ params }) {
           </Link>
         </header>
         
-        <main className="border border-gray-600 border-t-0 rounded-b-lg p-4">
+        <main className="border border-[#444] min-h-[75vh] border-t-0 rounded-b-lg p-4">
           <section className="max-w-4xl mx-auto px-4">
             <article>
               {metadata && (
