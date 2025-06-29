@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import { notFound } from 'next/navigation';
 import formatDate from '@/lib/formatdate';
-import "./page.css";
 
 export default async function Page({ params }) {
   try {
@@ -12,11 +11,11 @@ export default async function Page({ params }) {
     const { default: Post, metadata } = mdxModule;
     
     return (
-      <div className="w-full min-h-screen p-[clamp(0.5rem,3vw,2rem)] font-[Inter,system-ui,'Segoe_UI',Roboto,sans-serif] font-light leading-relaxed text-[var(--text-color)] bg-[var(--bg-color)]">
+      <div className="w-full min-h-screen p-[clamp(0.5rem,3vw,2rem)] font-['Inter',system-ui,'Segoe_UI',Roboto,sans-serif] text-base font-light leading-relaxed text-[var(--text-color)] bg-[var(--bg-color)]">
         <header className="border border-[var(--border-color)] rounded-t-lg p-8 text-center bg-[var(--bg-color)]">
           <Link 
             href="/" 
-            className="inline-flex items-center mb-4 text-[var(--accent-color)] font-medium transition-colors duration-200 hover:text-[var(--text-color)]"
+            className="inline-flex items-center mb-4 text-[var(--accent-color)] font-medium transition-colors duration-200 hover:text-[var(--text-color)] no-underline focus:outline-2 focus:outline-[var(--accent-color)] focus:outline-offset-2"
           >
             ← Back to Thoughts
           </Link>
@@ -28,25 +27,11 @@ export default async function Page({ params }) {
               {metadata && (
                 <header className="mb-8 pb-6 border-b border-[var(--border-color)]">
                   <div className="font-mono text-sm text-[var(--accent-color)] mb-2">{formatDate(metadata.publishDate)}</div>
-                  <h1 className="text-3xl font-semibold my-2 mb-4 text-[var(--text-color)]">{metadata.title}</h1>
-                  <p className="text-lg text-[var(--accent-color)] mb-4">{metadata.description}</p>
+                  <h1 className="font-semibold leading-[1.2] mb-4 text-[var(--text-color)]" style={{ fontSize: 'var(--font-3xl)' }}>{metadata.title}</h1>
+                  <p className="mb-4 text-[var(--accent-color)]" style={{ fontSize: 'var(--font-lg)' }}>{metadata.description}</p>
                 </header>
               )}
-              <div className="prose prose-lg max-w-none text-base leading-relaxed
-                prose-headings:text-[var(--text-color)]
-                prose-h1:text-2xl prose-h1:mt-8 prose-h1:mb-4
-                prose-h2:text-xl prose-h2:mt-7 prose-h2:mb-3
-                prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3
-                prose-p:mb-5 prose-p:text-[var(--text-color)]
-                prose-ul:mb-5 prose-ul:pl-6 prose-ul:list-disc
-                prose-ol:mb-5 prose-ol:pl-6 prose-ol:list-decimal
-                prose-li:mb-2 prose-li:text-[var(--text-color)]
-                prose-code:font-mono prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-                prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded-md prose-pre:overflow-x-auto prose-pre:my-6 prose-pre:font-mono
-                prose-blockquote:border-l-4 prose-blockquote:border-[var(--border-color)] prose-blockquote:pl-4 prose-blockquote:ml-0 prose-blockquote:mr-0 prose-blockquote:italic prose-blockquote:text-[var(--accent-color)]
-                prose-a:text-[var(--accent-color)] prose-a:underline hover:prose-a:text-[var(--text-color)]
-                prose-strong:text-[var(--text-color)] prose-strong:font-semibold
-                prose-em:text-[var(--text-color)] prose-em:italic">
+              <div className="max-w-none text-base leading-relaxed prose-content">
                 <Post />
               </div>
             </article>

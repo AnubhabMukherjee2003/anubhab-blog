@@ -1,11 +1,4 @@
-import "./page.css";
-
-// import { Inter } from "next/font/google";
-// const inter = Inter({
-//   subsets: ["latin"],
-//   display: "swap",
-//   variable: "--font-inter",
-// });
+import "./globals.css";
 
 export const metadata = {
   title: "Thoughts | Your Blog",
@@ -15,17 +8,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (localStorage.getItem("user-color-scheme") !== null) {
-                document.documentElement.setAttribute("data-user-color-scheme", localStorage.getItem("user-color-scheme"));
-              }
-            `,
-          }}
-        />
-      </head>
       <body>
         {children}
       </body>

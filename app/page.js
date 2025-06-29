@@ -1,11 +1,9 @@
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
-import { Fragment } from "react";
 
 import Header from "@/components/Header";
 import formatDate from '@/lib/formatdate'; 
-import "./page.css"; 
 
 export async function getBlogPosts() {
   // Function to get all blog posts from markdown folder
@@ -71,23 +69,32 @@ export default async function Page() {
     <div className="thoughts">
       <Header />
       
-      <main className="main-content">
-        <section className="content">
-          <div className="thoughts-list">
+      <main className="border border-[var(--border-color)] border-t-0 rounded-b-lg p-[var(--content-padding)]">
+        <section className="max-w-[1200px] mx-auto px-[var(--content-padding)]">
+          <div className="grid gap-6 md:grid-cols-[minmax(auto,10vw)_1fr] md:gap-[var(--content-padding)]">
             {Object.entries(postsByYear)
               .sort(([a], [b]) => parseInt(b) - parseInt(a))
               .flatMap(([year, posts]) => [
-                <h2 key={`year-${year}`} className="dateline">
+                <h2 
+                  key={`year-${year}`} 
+                  className="mt-0 mb-4 flex gap-2 items-center font-sans text-sm font-semibold text-[var(--accent-color)] col-span-1 uppercase tracking-wider md:after:content-[''] md:after:flex-1 md:after:h-px md:after:block md:after:bg-[var(--border-color)] md:after:ml-4 max-md:col-span-full max-md:after:content-[''] max-md:after:flex-1 max-md:after:h-px max-md:after:block max-md:after:bg-[var(--border-color)] max-md:after:ml-4 max-md:text-xs max-md:mb-3"
+                >
                   {year}
                 </h2>,
                 ...posts.map((post) => (
-                  <div key={post.slug} className="thought">
-                    <Link href={`/${post.slug}`} className="thought-title">
-                      <span>
+                  <div 
+                    key={post.slug} 
+                    className="mt-0 mb-2 py-3 border-b border-transparent transition-all duration-200 ease-in-out hover:border-[var(--border-color)] hover:translate-x-1 col-span-1 md:col-start-2 max-md:col-span-full max-md:py-2 max-md:mb-1"
+                  >
+                    <Link 
+                      href={`/${post.slug}`} 
+                      className="font-medium leading-[1.3] text-lg block transition-colors duration-200 ease-in-out text-[var(--text-color)] hover:text-[var(--accent-color)] max-md:text-base"
+                    >
+                      <span className="relative before:content-[''] before:absolute before:bottom-[-2px] before:left-0 before:w-0 before:h-0.5 before:bg-[var(--accent-color)] before:transition-all before:duration-300 before:ease-in-out hover:before:w-full">
                         {post.title}
                       </span>
                     </Link>
-                    <span className="thought-date">
+                    <span className="block text-xs text-[var(--accent-color)] mt-1">
                       {formatDate(post.publishDate)}
                     </span>
                   </div>
@@ -97,7 +104,7 @@ export default async function Page() {
         </section>
       </main>
       
-      <footer className="footer-main">
+      <footer className="mt-8 py-4 text-center text-sm text-[var(--accent-color)]">
         <p>© {new Date().getFullYear()} Your Blog. All rights reserved.</p>
       </footer>
     </div>
