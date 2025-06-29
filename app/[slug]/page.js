@@ -78,15 +78,15 @@ export async function generateMetadata({ params }) {
         title: metadata.title,
         description: metadata.description,
         url: `${
-          process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app/"
-        }${slug}`,
+          process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app"
+        }/${slug}`,
         siteName: "Anubhab's Blog",
         images: [
           {
             url: `${
               process.env.NEXT_PUBLIC_SITE_URL ||
-              "https://anubhab-blog.vercel.app/"
-            }og-image.png`,
+              "https://anubhab-blog.vercel.app"
+            }/og-image.png`,
             width: 1200,
             height: 630,
             alt: metadata.title,
@@ -102,8 +102,8 @@ export async function generateMetadata({ params }) {
         images: [
           `${
             process.env.NEXT_PUBLIC_SITE_URL ||
-            "https://anubhab-blog.vercel.app/"
-          }og-image.png`,
+            "https://anubhab-blog.vercel.app"
+          }/og-image.png`,
         ],
         creator: "@Anubhab621",
       },

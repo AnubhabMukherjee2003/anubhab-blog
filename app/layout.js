@@ -17,7 +17,7 @@ export const metadata = {
     siteName: "Anubhab's Blog",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app/"}og-image.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app"}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Anubhab's Blog OG Image",
@@ -31,7 +31,7 @@ export const metadata = {
     title: "Thoughts | Anubhab's Blog",
     description: "Writing about development, my journey, and more.",
     images: [
-      `${process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app/"}og-image.png`
+      `${process.env.NEXT_PUBLIC_SITE_URL || "https://anubhab-blog.vercel.app"}/og-image.png`
     ],
     creator: "@Anubhab621",
   },
